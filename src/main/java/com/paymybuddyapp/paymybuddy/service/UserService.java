@@ -32,4 +32,5 @@ public class UserService {
 		logger.info("Finding user by id: {}", id);
 		return userRepository.findById(id);
 	}
+
 }

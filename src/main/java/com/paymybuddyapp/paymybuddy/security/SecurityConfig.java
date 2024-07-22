@@ -10,27 +10,19 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-	
+
 	private final UserDetailsService userDetailsService;
-	
+
 	public SecurityConfig(UserDetailsService userDetailsService) {
 		this.userDetailsService = userDetailsService;
 	}
-	
+
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http
-			.csrf(csrf -> csrf.disable())
-			.authorizeHttpRequests(authorize -> authorize
-					.requestMatchers("/public/**").permitAll()
-					.anyRequest().authenticated()
-			)
-			.formLogin(formLogin -> formLogin
-					.permitAll()
-			)
-			.logout(logout -> logout
-					.permitAll()
-			);
+		http.csrf(csrf -> csrf.disable())
+				.authorizeHttpRequests(
+						authorize -> authorize.requestMatchers("/public/**").permitAll().anyRequest().authenticated())
+				.formLogin(formLogin -> formLogin.permitAll()).logout(logout -> logout.permitAll());
 		return http.build();
 	}
 

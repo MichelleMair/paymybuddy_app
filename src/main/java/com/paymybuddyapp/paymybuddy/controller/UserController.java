@@ -1,5 +1,6 @@
 package com.paymybuddyapp.paymybuddy.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,12 @@ public class UserController {
 	public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
 		Optional<User> user = userService.getUserByUsername(username);
 		return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+	}
+
+	@GetMapping
+	public ResponseEntity<List<User>> getAllUsers() {
+
+		List<User> users = userService.getAllUsers();
+		return ResponseEntity.ok(users);
 	}
 }

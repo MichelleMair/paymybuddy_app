@@ -1,5 +1,6 @@
 package com.paymybuddyapp.paymybuddy.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -21,6 +22,10 @@ public class UserService {
 	public User saveUser(User user) {
 		logger.info("Saving user : {}", user);
 		return userRepository.save(user);
+	}
+
+	public List<User> getAllUsers() {
+		return userRepository.findAll();
 	}
 
 	public Optional<User> getUserByUsername(String username) {

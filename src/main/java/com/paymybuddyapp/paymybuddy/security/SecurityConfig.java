@@ -20,9 +20,10 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable())
-				.authorizeHttpRequests(
-						authorize -> authorize.requestMatchers("/public/**").permitAll().anyRequest().authenticated())
-				.formLogin(formLogin -> formLogin.permitAll()).logout(logout -> logout.permitAll());
+				.authorizeHttpRequests(authorize -> authorize.requestMatchers("/login", "/register", "/api/**")
+						.permitAll().anyRequest().authenticated()) // le reste est protégé (protection de tous les
+																	// endpoints)
+				.formLogin(formLogin -> formLogin.loginPage("/login").permitAll()).logout(logout -> logout.permitAll());
 		return http.build();
 	}
 

@@ -40,9 +40,9 @@ git clone https://github.com/MichelleMair/paymybuddy_app.git
 The physical data model (PDM) is described below
 
 Diagram
-```markdown
+
 ![PDM Diagram](assets/pdm-diagram.png)
-```
+
 
 
 ## SQL Scripts

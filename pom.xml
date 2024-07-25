@@ -64,6 +64,12 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.github.database-rider</groupId>
+			<artifactId>rider-spring</artifactId>
+			<version>1.21.1</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

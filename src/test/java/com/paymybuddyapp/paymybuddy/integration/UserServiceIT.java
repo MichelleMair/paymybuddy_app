@@ -49,4 +49,26 @@ public class UserServiceIT {
 		assertThat(foundUser).isPresent();
 		assertThat(foundUser.get().getEmail()).isEqualTo(user.getEmail());
 	}
+
+	@Test
+	@Transactional
+	@DataSet(cleanBefore = true, cleanAfter = true)
+	public void testCreateUser() {
+
+		// GIVEN
+		User user = new User();
+		user.setUsername("createTestUser" + System.currentTimeMillis());
+		user.setEmail("createTestUser" + System.currentTimeMillis() + "testUser@example.com");
+		user.setPassword("password");
+
+		// WHEN
+		User savedUser = userService.saveUser(user);
+
+		// THEN
+		Optional<User> foundUser = userRepository.findById(savedUser.getId());
+		assertThat(foundUser).isPresent();
+		assertThat(foundUser.get().getUsername()).isEqualTo(user.getUsername());
+		assertThat(foundUser.get().getEmail()).isEqualTo(user.getEmail());
+	}
+
 }

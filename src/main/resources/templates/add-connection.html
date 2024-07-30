@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Ajouter relation</title>
+	<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+	<header>
+		<nav>
+			<a href="/profile">Pay My Buddy</a>
+			<a href="/">Transférer</a>
+			<a href="/profile">Profil</a>
+			<a href="/add-connection">Ajouter relation</a>
+			<a href="/logout">Se déconnecter</a>
+		</nav>
+	</header>
+	<main>
+		<div class="add-connection-container">
+			<h2>Chercher une relation</h2>
+			<form th:action="@{/add-connection}" method="post">
+				<input type="email" name="email" placeholder="Saisir une adresse mail" required/>
+				<button type="submit">Ajouter</button>
+			</form>
+		</div>
+	</main>
+</body>
+</html>

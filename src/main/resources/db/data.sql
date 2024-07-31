@@ -1,4 +1,4 @@
-USE mydb
+USE mydb;
 
 -- Insertion de données dans la table USER
 INSERT INTO USER (username, email, password) VALUES ('John Doe', 'john.doe@example.com', 'password123');

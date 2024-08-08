@@ -4,21 +4,22 @@
 	<meta charset="UTF-8">
 	<title>Ajouter relation</title>
 	<link rel="stylesheet" href="/css/styles.css">
+	<link rel="stylesheet" href="/css/add-connection.css">
 </head>
 <body>
 	<header>
 		<nav>
 			<a href="/profile">Pay My Buddy</a>
-			<a href="/">Transférer</a>
+			<a href="/transfer">Transférer</a>
 			<a href="/profile">Profil</a>
-			<a href="/add-connection">Ajouter relation</a>
+			<a href="/connections/add-connection">Ajouter relation</a>
 			<a href="/logout">Se déconnecter</a>
 		</nav>
 	</header>
 	<main>
 		<div class="add-connection-container">
 			<h2>Chercher une relation</h2>
-			<form th:action="@{/add-connection}" method="post">
+			<form th:action="@{/connections/add-connection}" method="post">
 				<input type="email" name="email" placeholder="Saisir une adresse mail" required/>
 				<button type="submit">Ajouter</button>
 			</form>

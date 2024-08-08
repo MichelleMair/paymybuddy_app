@@ -4,23 +4,24 @@
 	<meta charset="UTF-8">
 	<title>Transférer</title>
 	<link rel="stylesheet" href="/css/styles.css">
+	<link rel="stylesheet" href="/css/transfer.css">
 </head>
 <body>
 	<header>
 		<nav>
 			<a href="/profile">Pay My Buddy</a>
-			<a href="/">Transférer</a>
+			<a href="/transfer">Transférer</a>
 			<a href="/profile">Profil</a>
-			<a href="/add-connection">Ajouter relation</a>
+			<a href="/connections/add-connection">Ajouter relation</a>
 			<a href="/logout">Se déconnecter</a>
 		</nav>
 	</header>
 	<main>
 		<div class="transfer-container">
 			<h2>Transférer</h2>
-			<form th:action="@{/transfer}" method="post">
-				<select name="relation" required>
-					<option th:each="relation : ${relations}" th:value="${relation.id}" th:text="${relation.username}">Sélectionner une relation</option>	
+			<form th:action="@{/api/transactions/transfer}" method="post">
+				<select name="receiverId" required>
+					<option th:each="relation : ${relations}" th:value="${relation.connection.id}" th:text="${relation.connection.username}">Sélectionner une relation</option>	
 				</select>
 				<input type="text" name="description" placeholder="Description" required/>
 				<input type="number" name="amount" placeholder="0€" required/>
@@ -38,7 +39,7 @@
 					</thead>
 					<tbody>
 						<tr th:each="transaction : ${transactions}">
-							<td th:text="${transaction.relation.username}">Relation</td>
+							<td th:text="${transaction.receiver.username}">Relation</td>
 							<td th:text="${transaction.description}">Description</td>
 							<td th:text="${transaction.amount}">Montant</td>
 						</tr>

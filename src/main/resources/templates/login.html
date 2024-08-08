@@ -4,15 +4,19 @@
 	<meta charset="UTF-8">
 	<title>Login</title>
 	<link rel="stylesheet" href="/css/styles.css">
+	<link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
 	<div class="login-container">
 		<h1>Pay my buddy</h1>
-			<form th:action="@{/login}" method="post">
+			<form th:action="@{/perform_login}" method="post">
 				<input type="text" name="username" placeholder="Identifiant" required/>
 				<input type="password" name="password" placeholder="Mot de passe" required/>
 				<button type="submit">Se connecter</button>
 			</form>
+			<div th:if="${error}">
+				<p>Identifiant ou mot de passe incorrect</p>
+			</div>
 	</div>
 </body>
 </html>

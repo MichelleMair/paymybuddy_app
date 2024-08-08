@@ -17,3 +17,9 @@ body {
 	margin: auto;
 	overflow: hidden;
 }
+
+nav a {
+	color: #fff;
+	text-decoration: none;
+	margin: 0 10px;
+}

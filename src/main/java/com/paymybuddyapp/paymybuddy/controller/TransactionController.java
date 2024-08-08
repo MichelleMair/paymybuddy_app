@@ -1,49 +1,58 @@
 package com.paymybuddyapp.paymybuddy.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.paymybuddyapp.paymybuddy.model.Transaction;
+import com.paymybuddyapp.paymybuddy.model.User;
 import com.paymybuddyapp.paymybuddy.service.TransactionService;
+import com.paymybuddyapp.paymybuddy.service.UserService;
 
-@RestController
+@Controller
 @RequestMapping("/api/transactions")
 public class TransactionController {
 
 	@Autowired
 	private TransactionService transactionService;
 
-	@PostMapping
-	public ResponseEntity<Transaction> createTransaction(@RequestBody Transaction transaction) {
-		Transaction savedTransaction = transactionService.saveTransaction(transaction);
-		return ResponseEntity.ok(savedTransaction);
-	}
+	@Autowired
+	private UserService userService;
 
-	@GetMapping("/sender/{senderId}")
-	public ResponseEntity<List<Transaction>> getTransactionsBySender(@PathVariable Long senderId) {
-		List<Transaction> transactions = transactionService.getTransactionsBySender(senderId);
+	@GetMapping("/")
+	public String home(Model model, Principal principal) {
+		User user = userService.getUserByUsername(principal.getName()).orElse(null);
 
-		if (transactions.isEmpty()) {
-			return ResponseEntity.noContent().build();
+		if (user != null) {
+			List<Transaction> transactions = transactionService.getTransactionsBySender(user.getId());
+			model.addAttribute("transactions", transactions);
+			model.addAttribute("user", user);
 		}
-		return ResponseEntity.ok(transactions);
+		return "transfer";
 	}
 
-	@GetMapping("/receiver/{receiverId}")
-	public ResponseEntity<List<Transaction>> getTransactionsByReceiver(@PathVariable Long receiverId) {
-		List<Transaction> transactions = transactionService.getTransactionsByReceiver(receiverId);
+	@PostMapping("/transfer")
+	public String transfer(@RequestParam Long receiverId, @RequestParam String description, @RequestParam double amount,
+			Principal principal) {
+		User sender = userService.getUserByUsername(principal.getName()).orElse(null);
+		User receiver = userService.getUserById(receiverId).orElse(null);
 
-		if (transactions.isEmpty()) {
-			return ResponseEntity.noContent().build();
+		if (sender != null && receiver != null && sender.getId() != receiver.getId()) {
+			Transaction transaction = new Transaction();
+			transaction.setSender(sender);
+			transaction.setReceiver(receiver);
+			transaction.setDescription(description);
+			transaction.setAmount(amount);
+			transactionService.saveTransaction(transaction);
 		}
-		return ResponseEntity.ok(transactions);
+		return "redirect:/transfer";
 	}
+
 }

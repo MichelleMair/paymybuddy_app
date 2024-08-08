@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.add-connection-container {
+	max-width:400px;
+	margin: 100px auto;
+	padding: 20px;
+	background: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	text-align: center;
+}
+
+.add-connection-container input {
+	width: 100%;
+	padding: 10px;
+	margin: 10px 0;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.add-connection-container button {
+	width: 100%;
+	padding: 10px;
+	background: #007bff;
+	border: none;
+	color: #fff;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.add-connection-container button:hover {
+	background: #005b63;
+}
+

@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Register</title>
 	<link rel="stylesheet" href="/css/styles.css">
+	<link rel="stylesheet" href="/css/register.css">
 </head>
 <body>
 	<div class="register-container">
@@ -14,6 +15,10 @@
 				<input type="password" name="password" placeholder="Mot de passe" required/>
 				<button type="submit">S'inscrire</button>
 			</form>
+			<div th:if="${param.error}">
+				<p th:if="${param.error == 'username'}">Identifiant déjà utilisé</p>
+				<p th:if="${param.error == 'email'}">Email déjà utilisé</p>
+			</div>
 	</div>
 </body>
 </html>

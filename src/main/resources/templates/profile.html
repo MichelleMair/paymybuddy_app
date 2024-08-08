@@ -4,20 +4,21 @@
 	<meta charset="UTF-8">
 	<title>Profil</title>
 	<link rel="stylesheet" href="/css/styles.css">
+	<link rel="stylesheet" href="/css/profile.css">
 </head>
 <body>
 	<header>
 		
 		<nav>
 			<a href="/profile">Pay My Buddy</a>
-			<a href="/">Transférer</a>
+			<a href="/transfer">Transférer</a>
 			<a href="/profile">Profil</a>
-			<a href="/add-connection">Ajouter relation</a>
+			<a href="/connections/add-connection">Ajouter relation</a>
 			<a href="/logout">Se déconnecter</a>
 		</nav>
 	</header>
 	<main>
-		<div class="profile-conatainer">
+		<div class="profile-container">
 			<form th:action="@{/profile/update}" method="post">
 				<label>Identifiant: </label>
 				<input type="text" th:value="${user.username}" readonly />

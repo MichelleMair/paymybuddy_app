@@ -5,8 +5,6 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.paymybuddyapp.paymybuddy.model.User;
@@ -17,14 +15,13 @@ public class UserService {
 
 	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
-	@Autowired
-	private UserRepository userRepository;
+	private final UserRepository userRepository;
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+	public UserService(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 
 	public User saveUser(User user) {
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		logger.info("Saving user : {}", user);
 		return userRepository.save(user);
 	}
@@ -41,6 +38,10 @@ public class UserService {
 	public Optional<User> getUserById(Long id) {
 		logger.info("Finding user by id: {}", id);
 		return userRepository.findById(id);
+	}
+
+	public Optional<User> getUserByEmail(String email) {
+		return userRepository.findByEmail(email);
 	}
 
 }

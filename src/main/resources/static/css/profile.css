@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+.profile-connection {
+	max-width: 400px;
+	margin: 100px auto;
+	padding: 20px;
+	background: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.profile-connection form {
+	display: flex;
+	flex-direction: column;
+}
+
+
+.profile-connection label {
+	margin: 10px 0 5px;
+}
+
+
+.profile-connection input {
+	padding: 10px;
+	margin:5px 0;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.profile-container button {
+	padding: 10px;
+	background: #007bff;
+	border: none;
+	color: #fff;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+.profile-container button:hover {
+	background: #0056b3;
+}
+
+
+
+

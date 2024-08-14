@@ -1,33 +1,123 @@
 @charset "UTF-8";
 
+.body {
+	font-family: 'Inter', sans-serif;
+	margin:0;
+	padding:0;
+	background-color: #f4f4f4;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.relation-app-title {
+	color: #000;
+	font-size: 20px;
+	font-family: 'Inter', sans-serif;
+	font-weight: normal;
+	text-decoration: none;
+	display: inline;
+	margin-right: auto;
+	background: none;
+	border: none;
+	padding: 0;
+}
+
+.header-navigation {
+	background-color: #ffffff;
+	height: 64px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	padding: 0 20px;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.app-title-text {
+	color: #f59f1d;
+	font-size: 24px;
+	font-family: 'Inter', sans-serif;
+	font-weight: bold;
+	text-decoration: none;
+	display: inline;
+	padding: 0;
+}
+
+.navigation-items {
+	list-style: none;
+	display: flex;
+	gap: 48px;
+	align-items: center;
+	margin-right: 20px;
+}
+
+.navigation-items a {
+	color: #000;
+	text-decoration: none;
+	font-size: 20px;
+	padding: 0 10px;
+}
+
+.navigation-items a.active {
+	color: #207fee;
+	font-weight: bold;
+}
+
 .add-connection-container {
-	max-width:400px;
-	margin: 100px auto;
-	padding: 20px;
+	max-width: 700px;
+	padding: 80px 70px;
 	background: #fff;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	text-align: center;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.input-field-with-label {
+	width: 100%;
+	margin-bottom: 40px;
+}
+
+.input-label {
+	font-size: 30px;
+	color: #000;
+	margin-bottom: 8px;
+	display: block;
 }
 
 .add-connection-container input {
 	width: 100%;
-	padding: 10px;
-	margin: 10px 0;
+	padding: 25px;
+	font-size: 20px;
+	box-sizing: border-box;
+	margin-bottom: 20px;
 	border: 1px solid #ccc;
-	border-radius: 4px;
+	border-radius: 8px;
 }
 
-.add-connection-container button {
-	width: 100%;
-	padding: 10px;
-	background: #007bff;
-	border: none;
+.add-button {
+	background-color: #f59f1d;
 	color: #fff;
-	border-radius: 4px;
+	padding: 20px 40px;
+	border-radius: 8px;
+	border: none;
+	font-size: 24px;
 	cursor: pointer;
+	width: 100%;
+	text-align: center;
 }
 
-.add-connection-container button:hover {
-	background: #005b63;
+.add-button:hover {
+	background-color: #e08917;
 }
+
+
+
+
 

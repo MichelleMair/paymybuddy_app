@@ -3,6 +3,8 @@ package com.paymybuddyapp.paymybuddy.controller;
 import java.security.Principal;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,6 +25,8 @@ import com.paymybuddyapp.paymybuddy.service.UserService;
  */
 @Controller
 public class HomeController {
+
+	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
 	@Autowired
 	private UserService userService;
@@ -50,8 +54,10 @@ public class HomeController {
 			model.addAttribute("relations", connectionService.getConnectionsByUserId(currentUser.getId()));
 			model.addAttribute("transactions", transactionService.getTransactionsBySender(currentUser.getId()));
 
+			logger.info("Loaded transfer page for user: {}", currentUser.getEmail());
 			return "transfer";
 		} else {
+			logger.error("User not found for email: {}", email);
 			return "redirect:/login?error=usernotfound";
 		}
 	}

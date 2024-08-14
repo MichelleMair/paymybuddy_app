@@ -28,7 +28,7 @@ public class ConnectionController {
 	@PostMapping("/add-connection")
 	public String addConnection(@RequestParam String email, Principal principal, Model model) {
 
-		User user = userService.getUserByUsername(principal.getName()).orElse(null);
+		User user = userService.getUserByEmail(principal.getName()).orElse(null);
 
 		User connection = userService.getUserByEmail(email).orElse(null);
 

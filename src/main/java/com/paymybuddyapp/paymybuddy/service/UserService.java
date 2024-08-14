@@ -41,6 +41,7 @@ public class UserService {
 	}
 
 	public Optional<User> getUserByEmail(String email) {
+		logger.info("Finding user by email: {}", email);
 		return userRepository.findByEmail(email);
 	}
 

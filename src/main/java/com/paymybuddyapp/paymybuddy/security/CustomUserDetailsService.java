@@ -27,18 +27,18 @@ public class CustomUserDetailsService implements UserDetailsService {
 	}
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<User> optionalUser = userRepository.findByUsername(username);
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		Optional<User> optionalUser = userRepository.findByEmail(email);
 
 		if (optionalUser.isEmpty()) {
-			logger.error("User not found with username: " + username);
-			throw new UsernameNotFoundException("User not found with username: " + username);
+			logger.error("User not found with username: " + email);
+			throw new UsernameNotFoundException("User not found with email: " + email);
 		}
 
 		User user = optionalUser.get();
-		logger.info("User found: {} with encoded password: {} ", user.getUsername(), user.getPassword());
+		logger.info("User found: {} with encoded password: {} ", user.getEmail(), user.getPassword());
 
-		return org.springframework.security.core.userdetails.User.withUsername(user.getUsername())
+		return org.springframework.security.core.userdetails.User.withUsername(user.getEmail())
 				.password(user.getPassword()).authorities(Collections.emptyList()).accountExpired(false)
 				.accountLocked(false).credentialsExpired(false).disabled(false).build();
 	}

@@ -7,14 +7,33 @@
 	<link rel="stylesheet" href="/css/register.css">
 </head>
 <body>
-	<div class="register-container">
-		<h1>Pay my buddy</h1>
-			<form th:action="@{/register}" method="post">
-				<input type="text" name="username" placeholder="Identifiant" required/>
-				<input type="email" name="email" placeholder="Mail" required/>
-				<input type="password" name="password" placeholder="Mot de passe" required/>
-				<button type="submit">S'inscrire</button>
-			</form>
+	<div id="register-page" class="register-page">
+		<button id="app-title" class="app-title">
+			<div id="app-title-text" class="app-title-text">
+				Pay My Buddy
+			</div>
+		</button>
+		
+		<form th:action="@{/register}" method="post">
+			<div id="username-field" class="input-field">
+				<input type="text" name="username" id="username-input" class="input" placeholder="Username" required/>
+			</div>
+			
+			<div id="email-field" class="input-field">
+				<input type="email" name="email" id="email-input" class="input" placeholder="Mail" required/>
+			</div>
+			
+			<div id="password-field" class="input-field">
+				<input type="password" name="password" id="password-input" class="input" placeholder="Mot de passe" required/>
+			</div>
+			
+			<button id="register-button" class="register-button" type="submit">
+				<div id="register-text" class="register-text">
+					S'inscrire
+				</div>
+			</button>
+				
+		</form>
 			<div th:if="${param.error}">
 				<p th:if="${param.error == 'username'}">Identifiant déjà utilisé</p>
 				<p th:if="${param.error == 'email'}">Email déjà utilisé</p>

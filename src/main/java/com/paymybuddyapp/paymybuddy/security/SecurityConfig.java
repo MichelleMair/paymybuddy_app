@@ -39,8 +39,9 @@ public class SecurityConfig {
 						authorize -> authorize.requestMatchers("/register", "/login", "/css/**", "/js/**").permitAll()
 								.requestMatchers("/profile/**", "/transfer", "/connections/**").authenticated()
 								.anyRequest().authenticated())
-				.formLogin(form -> form.loginPage("/login").loginProcessingUrl("/perform_login")
-						.defaultSuccessUrl("/profile", true).failureUrl("/login?error=true").permitAll())
+				.formLogin(
+						form -> form.loginPage("/login").loginProcessingUrl("/perform_login").usernameParameter("email")
+								.defaultSuccessUrl("/profile", true).failureUrl("/login?error=true").permitAll())
 				.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login").permitAll());
 		return http.build();
 	}

@@ -41,8 +41,8 @@ public class HomeController {
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-		String username = authentication.getName();
-		Optional<User> currentUserOptional = userService.getUserByUsername(username);
+		String email = authentication.getName();
+		Optional<User> currentUserOptional = userService.getUserByEmail(email);
 
 		if (currentUserOptional.isPresent()) {
 			User currentUser = currentUserOptional.get();
@@ -60,10 +60,10 @@ public class HomeController {
 	public String profile(Model model) {
 		// Récupération de l'utilisateur actuellement authentifié
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String username = authentication.getName();
+		String email = authentication.getName();
 
 		// Recherche de l'utilisateur dans la BDD
-		Optional<User> currentUserOptional = userService.getUserByUsername(username);
+		Optional<User> currentUserOptional = userService.getUserByEmail(email);
 
 		if (currentUserOptional.isPresent()) {
 			User currentUser = currentUserOptional.get();
@@ -76,7 +76,7 @@ public class HomeController {
 
 	@PostMapping("/profile/update")
 	public String updateProfil(@RequestParam String password, Principal principal) {
-		Optional<User> currentUserOptional = userService.getUserByUsername(principal.getName());
+		Optional<User> currentUserOptional = userService.getUserByEmail(principal.getName());
 
 		if (currentUserOptional.isPresent()) {
 			User currentUser = currentUserOptional.get();

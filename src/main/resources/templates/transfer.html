@@ -8,10 +8,12 @@
 </head>
 <body>
 	<header>
-		<nav>
-			<ul>
-				<li><a href="/profile">Pay My Buddy</a></li>
-				<li><a href="/transfer">Transférer</a></li>
+		<nav class="header-navigation">
+			<div class="transfer-app-title">
+				<a href="/profile" class="app-title-text">Pay My Buddy</a>
+			</div>
+			<ul class="navigation-items">
+				<li><a href="/transfer" class="active">Transférer</a></li>
 				<li><a href="/profile">Profil</a></li>
 				<li><a href="/connections/add-connection">Ajouter relation</a></li>
 				<li><a href="/logout">Se déconnecter</a></li>
@@ -20,14 +22,24 @@
 	</header>
 	<main>
 		<div class="transfer-container">
-			<h2>Transférer</h2>
 			<form th:action="@{/api/transactions/transfer}" method="post">
-				<select name="receiverId" required>
-					<option th:each="relation : ${relations}" th:value="${relation.connection.id}" th:text="${relation.connection.username}">Sélectionner une relation</option>	
-				</select>
-				<input type="text" name="description" placeholder="Description" required/>
-				<input type="number" name="amount" placeholder="0€" required/>
-				<button type="submit">Payer</button>
+				<div class="input-group">
+					<select name="receiverId" required>
+						<option th:each="relation : ${relations}" th:value="${relation.connection.id}" th:text="${relation.connection.username}">Sélectionner une relation</option>	
+					</select>
+				</div>
+				
+				<div class="input-group">
+					<input type="text" name="description" placeholder="Description" required/>
+				</div>
+
+				<div class="input-group">				
+					<input type="number" name="amount" placeholder="0€" required/>
+				</div>
+				
+				<div class="button-container">
+					<button type="submit" class="pay-button">Payer</button>
+				</div>
 			</form>
 			<div class="transactions">
 				<h3>Mes transactions</h3>

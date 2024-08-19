@@ -52,4 +52,19 @@ public class TransactionServiceTest {
 		assertThat(transactions).contains(transaction);
 	}
 
+	@Test
+	public void testGetTransactionsByReceiver() {
+		// ARRANGE
+		Long receiverId = 2L;
+		Transaction transaction = new Transaction();
+
+		when(transactionRepository.findByReceiverId(receiverId)).thenReturn(List.of(transaction));
+
+		// ACT
+		List<Transaction> transactions = transactionService.getTransactionsByReceiver(receiverId);
+
+		// ASSERT
+		assertThat(transactions).contains(transaction);
+	}
+
 }

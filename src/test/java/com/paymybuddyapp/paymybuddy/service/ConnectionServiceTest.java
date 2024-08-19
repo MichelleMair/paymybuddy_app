@@ -24,7 +24,7 @@ public class ConnectionServiceTest {
 	private ConnectionService connectionService;
 
 	@Test
-	public void testSaveCoonection() {
+	public void testSaveConnection() {
 		// ARRANGE
 		Connection connection = new Connection();
 

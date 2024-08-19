@@ -22,8 +22,13 @@ public class UserService {
 	}
 
 	public User saveUser(User user) {
-		logger.info("Saving user : {}", user);
-		return userRepository.save(user);
+		logger.info("1. Before saving user in UserService: {}", user);
+
+		User savedUser = userRepository.save(user);
+
+		logger.info("2. After saving user in UserService: {}", savedUser);
+
+		return savedUser;
 	}
 
 	public List<User> getAllUsers() {

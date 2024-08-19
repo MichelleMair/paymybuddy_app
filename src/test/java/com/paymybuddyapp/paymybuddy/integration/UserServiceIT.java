@@ -71,4 +71,22 @@ public class UserServiceIT {
 		assertThat(foundUser.get().getEmail()).isEqualTo(user.getEmail());
 	}
 
+	@Test
+	@Transactional
+	@DataSet(cleanBefore = true, cleanAfter = true)
+	public void testGetUserByEmail() {
+
+		// GIVEN
+		String email = "testUser@example.com";
+		User user = new User(null, "testUser", email, "password");
+		userRepository.save(user);
+
+		// WHEN
+		Optional<User> foundUser = userService.getUserByEmail(email);
+
+		// THEN
+		assertThat(foundUser).isPresent();
+		assertThat(foundUser.get().getEmail()).isEqualTo(email);
+	}
+
 }

@@ -30,4 +30,8 @@ public class ConnectionService {
 		logger.info("2. After saving user in UserService: {}", userId);
 		return conn;
 	}
+
+	public boolean existsByUserAndConnection(Long userId, Long connectionId) {
+		return connectionRepository.findByUserIdAndConnectionId(userId, connectionId).isPresent();
+	}
 }

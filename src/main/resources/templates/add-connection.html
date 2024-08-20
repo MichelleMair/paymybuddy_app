@@ -27,6 +27,12 @@
 					<label for="email" class="input-label">Chercher une relation</label>
 					<input type="email" id="email" name="email" placeholder="Saisir une adresse mail" required/>
 				</div>
+				
+				<div class="message-container">
+					<p th:if="${errorMessage}" th:text="${errorMessage}" class="error-message"></p>
+					<p th:if="${successMessage}" th:text="${successMessage}" class="success-message"></p>
+				</div>
+				
 				<button type="submit" class="add-button">Ajouter</button>
 			</form>
 		</div>

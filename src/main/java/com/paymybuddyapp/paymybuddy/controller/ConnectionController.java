@@ -32,13 +32,28 @@ public class ConnectionController {
 
 		User connection = userService.getUserByEmail(email).orElse(null);
 
-		if (user != null && connection != null && !user.getId().equals(connection.getId())) {
-			Connection conn = new Connection(new Connection.ConnectionID(user.getId(), connection.getId()), user,
-					connection);
-			connectionService.saveConnection(conn);
+		if (user == null || connection == null) {
+			model.addAttribute("errorMessage", "L'adresse e-mail saisie n'existe pas.");
+			return "add-connection";
 		}
 
-		return "redirect:/connections/add-connection";
+		if (user.getId().equals(connection.getId())) {
+			model.addAttribute("errorMessage", "Vous ne pouvez pas vous ajouter.");
+			return "add-connection";
+		}
+
+		if (connectionService.existsByUserAndConnection(user.getId(), connection.getId())) {
+			model.addAttribute("errorMessage", "Cette adresse e-mail fait déjà partie de vos relations.");
+			return "add-connection";
+
+		}
+		Connection conn = new Connection(new Connection.ConnectionID(user.getId(), connection.getId()), user,
+				connection);
+		connectionService.saveConnection(conn);
+
+		model.addAttribute("successMessage", "Adresse e-mail ajoutée avec succès!");
+
+		return "add-connection";
 	}
 
 	@GetMapping("/add-connection")

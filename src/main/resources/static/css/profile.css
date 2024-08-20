@@ -1,0 +1,172 @@
+@charset "UTF-8";
+
+body {
+	font-family: 'Inter', sans-serif;
+	margin:0;
+	padding:0;
+	background-color: #f4f4f4;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.profile-app-title {
+	color: #000;
+	font-size: 20px;
+	font-family: 'Inter', sans-serif;
+	font-weight: normal;
+	text-decoration: none;
+	display: inline;
+	margin-right: auto;
+	background: none;
+	border: none;
+	padding: 0;
+}
+
+.header-navigation {
+	background-color: #ffffff;
+	height: 64px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	padding: 0 20px;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.app-title {
+	color: #000;
+	font-size: 20px;
+	font-family: 'Inter', sans-serif;
+	font-weight: normal;
+	text-decoration: none;
+	display: inline;
+	margin-right: auto;
+}
+
+.app-title-text {
+	color: #f59f1d;
+	font-size: 24px;
+	font-family: 'Inter', sans-serif;
+	font-weight: bold;
+	text-decoration: none;
+	background: none;
+	border: none;
+	display: inline;
+	padding: 0;
+}
+
+.navigation-items {
+	list-style: none;
+	display: flex;
+	gap: 48px;
+	align-items: center;
+	margin-right: 20px;
+	justify-content: flex-end;
+}
+
+.navigation-items li {
+	display: inline
+}
+
+
+.navigation-items a {
+	color: #000;
+	text-decoration: none;
+	font-size: 20px;
+	padding: 0 10px;
+}
+
+.navigation-items a.active {
+	color: #207fee;
+	font-weight: bold;
+}
+
+
+.profile-container {
+	background-color: #ffffff;
+	padding: 60px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	width: 90%;
+	max-width: 1000px;
+	margin: 100px auto;
+	border-radius: 8px;
+}
+
+
+.information {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.info-field {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px 0;
+	position: relative;
+	gap: 20px;
+}
+
+
+.info-value {
+	font-size: 20px;
+	color: #333;
+	flex-grow: 1;
+	text-align: left;
+	padding-left: 10px;
+}
+
+.icon-chevron_right {
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	right: 0;
+}
+
+input[type="password"] {
+	border: none;
+	background-color: transparent;
+	font-size: 20px;
+	color: #333;
+	outline: none;
+	padding-left: 0;
+	width: auto;
+	flex: 2;
+}
+
+.modify-button {
+	background-color: #f59f1d;
+	color: #fff;
+	padding: 20px 40px;
+	height: 64px;
+	width: 220px;
+	filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.05));
+	border-radius: 8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: none;
+	margin-top: 20px;
+	cursor: pointer;
+}
+
+.modify-button:hover {
+	background-color: #e08917;
+}
+
+.modify-button .modify-text {
+	color: #ffffff;
+	text-align: center;
+	font-size: 24px;
+	font-family: 'Inter', sans-serif;
+	font-weight: bold;
+}
+
+
+

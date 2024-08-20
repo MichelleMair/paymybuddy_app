@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Register</title>
+	<link rel="stylesheet" href="/css/styles.css">
+	<link rel="stylesheet" href="/css/register.css">
+</head>
+<body>
+	<div id="register-page" class="register-page">
+		<button id="app-title" class="app-title">
+			<div id="app-title-text" class="app-title-text">
+				Pay My Buddy
+			</div>
+		</button>
+		
+		<form th:action="@{/register}" method="post">
+			<div id="username-field" class="input-field">
+				<input type="text" name="username" id="username-input" class="input" placeholder="Username" required/>
+			</div>
+			
+			<div id="email-field" class="input-field">
+				<input type="email" name="email" id="email-input" class="input" placeholder="Mail" required/>
+			</div>
+			
+			<div id="password-field" class="input-field">
+				<input type="password" name="password" id="password-input" class="input" placeholder="Mot de passe" required/>
+			</div>
+			
+			<button id="register-button" class="register-button" type="submit">
+				<div id="register-text" class="register-text">
+					S'inscrire
+				</div>
+			</button>
+				
+		</form>
+			<div th:if="${param.error}">
+				<p th:if="${param.error == 'username'}">Identifiant déjà utilisé</p>
+				<p th:if="${param.error == 'email'}">Email déjà utilisé</p>
+			</div>
+	</div>
+</body>
+</html>

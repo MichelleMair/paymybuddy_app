@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Profil</title>
+	<link rel="stylesheet" href="/css/styles.css">
+	<link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+	<header>
+		
+		<nav class="header-navigation">
+			<div class="profile-app-title">
+				<a href="/profile" class="app-title-text">Pay My Buddy</a>
+			</div>
+			<ul class="navigation-items">
+				<li><a href="/transfer">Transférer</a></li>
+				<li><a href="/profile">Profil</a></li>
+				<li><a href="/connections/add-connection">Ajouter relation</a></li>
+				<li><a href="/logout">Se déconnecter</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<div class="profile-container">
+			<form th:action="@{/profile/update}" method="post">
+				<div class="information">
+					<div class="info-field">
+						<label for="username" class="info-label">Username</label>
+						<div class="info-value">@<span th:text="${user.username}"></span></div>
+						<img class="icon-chevron_right" src= "/img/chevron-right.png" alt="chevron">
+					</div>
+
+					<div class="info-field">
+						<label for="email" class="info-label">Mail</label>
+						<div class="info-value" th:text="${user.email}"></div>
+						<img class="icon-chevron_right" src= "/img/chevron-right.png" alt="chevron">
+					</div>
+					
+					<div class="info-field">
+						<label for="password" class="info-label">Mot de passe</label>
+						<input type="password" name="password" id="password" class="input" placeholder="mot de passe" />
+						<img class="icon-chevron_right" src= "/img/chevron-right.png" alt="chevron">
+					</div>
+				</div>
+				<button type="submit" class="modify-button">
+					<div class="modify-text">Modifier</div>
+				</button>
+			</form>
+		</div>
+	</main>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Transférer</title>
+	<link rel="stylesheet" href="/css/styles.css">
+	<link rel="stylesheet" href="/css/transfer.css">
+</head>
+<body>
+	<header>
+		<nav class="header-navigation">
+			<div class="transfer-app-title">
+				<a href="/profile" class="app-title-text">Pay My Buddy</a>
+			</div>
+			<ul class="navigation-items">
+				<li><a href="/transfer" class="active">Transférer</a></li>
+				<li><a href="/profile">Profil</a></li>
+				<li><a href="/connections/add-connection">Ajouter relation</a></li>
+				<li><a href="/logout">Se déconnecter</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<div class="transfer-container">
+			<form th:action="@{/api/transactions/transfer}" method="post">
+				<div class="input-group">
+					<select name="receiverId" required>
+						<option th:each="relation : ${relations}" th:value="${relation.connection.id}" th:text="${relation.connection.username}">Sélectionner une relation</option>	
+					</select>
+				</div>
+				
+				<div class="input-group">
+					<input type="text" name="description" placeholder="Description" required/>
+				</div>
+
+				<div class="input-group">				
+					<input type="number" name="amount" placeholder="0€" step="0.01" required/>
+				</div>
+				
+				<div class="button-container">
+					<button type="submit" class="pay-button">Payer</button>
+				</div>
+			</form>
+			<div class="transactions">
+				<h3>Mes transactions</h3>
+				<table>
+					<thead>
+						<tr>
+							<th>Relations</th>
+							<th>Description</th>
+							<th>Montant</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="transaction : ${transactions}">
+							<td th:text="${transaction.receiver.username}">Relation</td>
+							<td th:text="${transaction.description}">Description</td>
+							<td th:text="${transaction.amount}">Montant</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</main>
+</body>
+</html>

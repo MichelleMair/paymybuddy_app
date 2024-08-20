@@ -23,6 +23,14 @@
 	</header>
 	<main>
 		<div class="profile-container">
+			<div th:if="${successMessage}" class="success-message">
+				<p th:text="${successMessage}"></p>
+			</div>
+			
+			<div th:if="${errorMessage}" class="error-message">
+				<p th:text="${errorMessage}"></p>
+			</div>
+			
 			<form th:action="@{/profile/update}" method="post">
 				<div class="information">
 					<div class="info-field">

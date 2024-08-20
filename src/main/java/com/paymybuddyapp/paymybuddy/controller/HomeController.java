@@ -81,20 +81,28 @@ public class HomeController {
 	}
 
 	@PostMapping("/profile/update")
-	public String updateProfil(@RequestParam String password, Principal principal) {
-		Optional<User> currentUserOptional = userService.getUserByEmail(principal.getName());
+	public String updateProfil(@RequestParam String password, Principal principal, Model model) {
+		try {
+			Optional<User> currentUserOptional = userService.getUserByEmail(principal.getName());
 
-		if (currentUserOptional.isPresent()) {
-			User currentUser = currentUserOptional.get();
-			if (password != null && !password.isEmpty()) {
-				currentUser.setPassword(passwordEncoder.encode(password));
-				userService.saveUser(currentUser);
+			if (currentUserOptional.isPresent()) {
+				User currentUser = currentUserOptional.get();
+				if (password != null && !password.isEmpty()) {
+					currentUser.setPassword(passwordEncoder.encode(password));
+					userService.saveUser(currentUser);
+					model.addAttribute("successMessage", "Mot de passe modifié avec succès! ");
+				} else {
+					model.addAttribute("errorMessage", "Le mot de passe ne peut être vide.");
+				}
+				model.addAttribute("user", currentUser);
+			} else {
+				model.addAttribute("errorMessage", "Utilisateur non trouvé.");
+				return "redirect:/login?error=usernotfound";
 			}
-			return "redirect:/profile";
-		} else {
-			return "redirect:/login?error=usernotfound";
+		} catch (Exception e) {
+			model.addAttribute("errorMessage", "Une erreur s'est produite. Veuillez réessayer. ");
 		}
-
+		return "profile";
 	}
 
 	@GetMapping("/add-connection")
